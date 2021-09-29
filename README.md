@@ -6,16 +6,16 @@ Machine Type & Resources:
 OS - CentOs 7.9,
 VCPU - 2,
 RAM - 2 GB,
-Note: Setup done on Virtual Box on local laptop using kubeadm
+Note: Setup done on EC2 Instances in AWS using kubeadm
 ```
 
 Common Steps in Master & Worker Node:
 1. Update host entry
 ```properties
 cat <<EOF>> /etc/hosts
-192.168.56.141 k8s-master01
-192.168.56.142 k8s-worker01
-192.168.56.143 k8s-worker02
+172.31.15.46 k8s-master01
+172.31.10.68 k8s-worker01
+172.31.8.105 k8s-worker02
 EOF
 ```
 2. Disable Selinux 
