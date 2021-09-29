@@ -39,7 +39,8 @@ swapoff -a && comment the swap line in /etc/fstab
 
 6.Install the kubernetes packages kubeadm, kubelet, and kubectl
 ```shell
-yum install -y kubelet kubeadm kubectl
+yum install -y kubelet kubeadm kubectl docker (master)
+yum install -y kubelet kubeadm docker (worker)
 ```
 
 7. Start & enable the docker & kubelet service
@@ -54,15 +55,15 @@ Master Node Setup:
 
 1. Initialize the K8s master cluster configuration
 ```shell
-kubeadm init --apiserver-advertise-address=192.168.56.141 --pod-network-cidr=10.244.0.0/16
+kubeadm init --apiserver-advertise-address=172.31.15.46 --pod-network-cidr=10.244.0.0/16
 ```
 Here, --apiserver-advertise-address = master server IP and --pod-network-cidr = IP range for POD CIDR (using flannel network)
 
 2. Create new '.kube' config directory and copy the configuration 'admin.conf'.
 ```shell
 mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 3. Deploying the flannel network using kubectl
@@ -81,7 +82,7 @@ Worker Nodes Setup:
 
 1. Adding worker01 and worker02 to the k8s cluster.
 ```shell
-kubeadm join 192.168.56.141:6443 --token fdx7ig.avo0af97223szobr --discovery-token-ca-cert-hash sha256:c40995dc93bd323824b1454e35e1cce259b60f8f66197a44746610d8e4ae2e85
+kubeadm join 172.31.15.46:6443 --token ywtccg.ehlijj69uzxwdh3p --discovery-token-ca-cert-hash sha256:af25b332cf6c74546ee94307d59c42cf945efb4b230e6ed9cf01db3234884791
 ```
 
 2. Verify node status
