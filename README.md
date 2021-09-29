@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-Phase1: K8s Setup
+##Phase1: K8s Setup
 Machine Type & Resources:
 -------------------------
 OS - CentOs 7.9
@@ -88,15 +88,13 @@ kube-system   kube-proxy-jp2bw                       1/1     Running   0        
 kube-system   kube-proxy-tkdnc                       1/1     Running   0          20m
 kube-system   kube-scheduler-k8s-master01            1/1     Running   0          21m
 
-Phase2: Application Setup
-# Spring3Hibernate is a maven based java application.
-## Dependencies
+##Phase2: Application Setup
+Spring3Hibernate is a maven based java application and below are dependencies.
 - [X] **Maven 3.X**
 - [X] **Java 8**
 - [X] **MySQL**
 - [X] **Docker**
 
-## Needs to be Taken Care
 This application uses the below properties to connects with MySQL database.
 
 ```properties
@@ -127,4 +125,3 @@ docker push singhjaspreet291/spring3hibernate:latest
 Step3: Deploy application in K8s, use yaml files from K8s directory.
 
 Step4: Deploy Logging & Monitoring Tool, use yaml files from observalibility directory.
-=======
