@@ -12,10 +12,9 @@ spec:
     app: spring3hibernate
     version: "1.0"
     environment: testing
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-    - port: 8080
-  externalIPs:
-    - 192.168.56.141
-    - 192.168.56.142
-    - 192.168.56.143
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080

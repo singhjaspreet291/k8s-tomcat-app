@@ -112,6 +112,11 @@ kube-system   kube-proxy-tkdnc                       1/1     Running   0        
 kube-system   kube-scheduler-k8s-master01            1/1     Running   0          21m
 ```
 
+4. Setup Ingress Controller using NodePort, since k8s deployed in EC2 using kubeadm and LoadBalancer provisioning not available.
+```shell
+https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.2/deploy/static/provider/baremetal/deploy.yaml
+```
+
 Phase2: Application Setup
 -------------------------
 Spring3Hibernate is a maven based java application and below are dependencies.

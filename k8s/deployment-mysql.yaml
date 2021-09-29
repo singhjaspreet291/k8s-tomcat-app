@@ -23,6 +23,10 @@ spec:
         version: "1.0"
         environment: testing
     spec:
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: nfs-pvc
       containers:
         - image: mysql:5.7
           name: mysql
@@ -36,19 +40,5 @@ spec:
             - containerPort: 3306
               name: mysql
           volumeMounts:
-            - name: data
+            - name: pv-storage
               mountPath: /var/lib/mysql
-  volumeClaimTemplates:
-  - apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      creationTimestamp: null
-      name: data
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 20Gi
-      storageClassName: nfs-disk
-      volumeMode: Filesystem
